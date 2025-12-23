@@ -1,0 +1,12 @@
+services:
+  compression-test:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "8080:80" # без сжатия
+      - "8081:8081" # gzip
+      - "8082:8082" # brotli
+      - "443:443" # http2
+    volumes:
+      - ./build:/usr/share/nginx/html:ro
