@@ -16,10 +16,9 @@ RUN mkdir -p /etc/nginx/ssl \
 
 RUN rm -f /etc/nginx/http.d/default.conf
 
-COPY ./nginx/no-compression.conf /etc/nginx/http.d/no-compression.conf
-COPY ./nginx/gzip.conf /etc/nginx/http.d/gzip.conf
-COPY ./nginx/brotli.conf /etc/nginx/http.d/brotli.conf
-COPY ./nginx/https.conf /etc/nginx/http.d/https.conf
+# Единый конфиг: серверы + сниппет «локального модуля»
+COPY ./nginx/servers.conf /etc/nginx/http.d/servers.conf
+COPY ./nginx/module-locations.conf /etc/nginx/module-locations.conf
 COPY ./build /usr/share/nginx/html
 
 EXPOSE 443
